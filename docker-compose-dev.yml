@@ -1,0 +1,24 @@
+services:
+  chanchito:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - monguito
+    volumes:
+      - .:/home/app                           # Codigo en tiempo real
+      - node_modules:/home/app/node_modules   # Dependencies del contenedor
+  monguito:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=nico
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db                  # Persistencia de datos de Mongo
+volumes:
+  mongo-data:
+  node_modules:  # ← Esto mantiene las dependencies del contenedor

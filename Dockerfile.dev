@@ -1,0 +1,11 @@
+FROM node:18
+RUN npm i -g nodemon
+RUN mkdir -p /home/app
+WORKDIR /home/app
+
+# Instalar dependencias en el contenedor
+COPY package*.json ./
+RUN npm install
+
+EXPOSE 3000
+CMD ["nodemon", "index.js"]

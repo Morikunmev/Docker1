@@ -12,6 +12,7 @@ mongoose.connect("mongodb://nico:password@monguito:27017/miapp?authSource=admin"
 
 app.get('/', async (_req, res) => {
   console.log('listando... chanchitos...')
+  console.log('CÓDIGO CAMBIADO!')  // ← Nueva línea
   const animales = await Animal.find();
   return res.send(animales)
 })
